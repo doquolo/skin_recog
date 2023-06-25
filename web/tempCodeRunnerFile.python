@@ -1,0 +1,26 @@
+import os
+from PIL import Image
+
+def convert_png_to_jpg(folder_path):
+    for filename in os.listdir(folder_path):
+        if filename.endswith(".png"):
+            # Đường dẫn tới file ảnh PNG
+            png_path = os.path.join(folder_path, filename)
+            
+            # Tạo đường dẫn tới file ảnh JPG mới
+            jpg_path = os.path.join(folder_path, os.path.splitext(filename)[0] + ".jpg")
+            
+            # Mở ảnh PNG và chuyển đổi thành JPG
+            img = Image.open(png_path)
+            img.convert("RGB").save(jpg_path, "JPEG")
+            
+            # Xóa file ảnh PNG ban đầu
+            os.remove(png_path)
+            
+            print(f"Đã chuyển đổi '{filename}' từ PNG sang JPG và xóa file PNG.")
+
+# Đường dẫn tới thư mục chứa các file ảnh
+folder_path = "skin cancer"
+
+# Gọi hàm chuyển đổi
+convert_png_to_jpg(folder_path)

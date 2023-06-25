@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="en-US" dir="ltr">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://templates.microweber.com/photography/userfiles/modules/microweber/default.css"
+      type="text/css"
+    />
+    <script src="https://templates.microweber.com/photography/userfiles/cache/apijs_combined/api.combined.1262861426.public.1.3.1-dev7.js"></script>
+    <title>Skin Disease Recognition</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:title" content="Home" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="                 " />
+    <meta property="og:type" content="page" />
+    <meta
+      property="og:url"
+      content="https://templates.microweber.com/photography/"
+    />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="                 " />
+    <meta property="og:site_name" content="Website name" />
+    <link href="https://fonts.cdnfonts.com/css/milliard" rel="stylesheet" />
+
+    <script>
+      mw.require("icon_selector.js");
+      mw.lib.require("bootstrap5js");
+      mw.require(
+        "https://templates.microweber.com/photography/userfiles/templates/photography/assets/plugins/mw-ui/assets/ui/plugins/js/plugins.js"
+      );
+      mw.lib.require("bxslider");
+      mw.lib.require("slick");
+      mw.iconLoader()
+        .addIconSet("iconsMindLine")
+        .addIconSet("iconsMindSolid")
+        .addIconSet("fontAwesome")
+        .addIconSet("materialDesignIcons");
+    </script>
+
+    <link
+      href="https://templates.microweber.com/photography/userfiles/media/default/css/photography/assets/css/colors.scss.1.3.1-dev7-5.5.css?t=1669121950"
+      id="theme-style"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+    <link
+      href="https://templates.microweber.com/photography/userfiles/templates/photography/assets/css/main.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://templates.microweber.com/photography/userfiles/templates/photography/assets/templates_features/css/scss/styles-for-template.css"
+      rel="stylesheet"
+    />
+    <script src="https://templates.microweber.com/photography/userfiles/templates/photography/assets/templates_features/js/js-for-template.js"></script>
+
+    <script id="template-animations-data">
+      mw.__pageAnimations = [];
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://templates.microweber.com/photography/userfiles/cache/custom_css.6a3bd23a830e829a72b3d123136ca9b2.1.3.1-dev7.css?ver=1669122264"
+      id="mw-custom-user-css"
+      type="text/css"
+    />
+    <meta name="generator" content="Microweber" />
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        background-color: ghostwhite;
+      }
+
+      h1 {
+        margin-top: 1rem;
+      }
+
+      #upload-input {
+        margin-bottom: 5px;
+        margin-left: 5.25rem; 
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #FFD700;
+        color: black;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      #preview {
+        width: 300px;
+        height: 300px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .preview {
+        width: 150px !important;
+        height: 150px;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 40rem 3rem 2rem 0px;
+      }
+
+      #action-buttons {
+        margin-top: 5px;
+        margin-bottom: 1rem;
+        text-align: center;
+        display: none;
+      }
+      
+      #use-button {
+        margin-bottom: 1rem; 
+      	display: inline-block;
+        padding: 10px 20px;
+        background-color: #FA8072;
+        color: black;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .column {
+        float: left;
+        width: 20%;
+        padding: 5px;
+        margin-top: 0.5rem;
+        margin-left: 5px;
+      }
+
+      .column.preview {
+        margin-right: 3rem;
+        margin-bottom: 4rem;
+      }
+
+      #wrapper {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      #left {
+        flex: 0 0 10%;
+        "display: flex;" 
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3rem;
+      }
+
+      #output {
+        width: 100%;
+        margin-left: 3rem;
+        margin-top: 3rem;
+      }
+
+      #solution {
+        margin-bottom: 1rem;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+
+      #advice-img {
+        display: none;
+        max-width: 100%;
+        max-height: 400px;
+        margin-bottom: 30px;
+      }
+
+      .photography-orange-rectangle {
+        position: absolute;
+        width: 92px;
+        height: 120px;
+        background-color: #ff7a01;
+        z-index: 0;
+      }
+
+      .photography-orange-rectangle.photography-rectangle-bottom {
+        bottom: -10px;
+        left: -20px;
+      }
+
+      .photography-orange-rectangle.photography-rectangle-top {
+        top: -10px;
+        right: -20px;
+      }
+
+      .photography-content-27-bottom-box {
+        background-color: #ffffff;
+        top: 100px;
+        z-index: 1;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <section
+      class="section pb-0 edit safe-mode mb-8 pt-0"
+      field="layout-header-skin-27-module-layouts-1"
+      rel="module"
+      style="background-color: #002632"
+    >
+      <div class="d-flex align-items-center mw-big-skin-3-background">
+        <div class="container-fluid pt-5">
+          <div class="row">
+            <div class="col-12 col-xl-10 mx-auto">
+              <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-12 col-lg-6 allow-drop py-4">
+                  <h1
+                    class="header-section-title"
+                    style="color: #ffffff; font-size: 80px; line-height: 106px"
+                  >
+                    Chẩn đoán bệnh da
+                  </h1>
+                  <p
+                    class="header-section-p lead my-8"
+                    style="color: #ffffff; font-size: 35px;"
+                  >
+                    Vì một cuộc sống khỏe mạnh 
+                  </p>
+
+                  <div
+                    class="nodrop d-flex align-items-center justify-content-start cloneable"
+                  >
+                    <div
+                      class="module module-btn"
+                      id="module-layouts-1-btn"
+                      data-mw-title="Button"
+                      button_text="Let's Work With Me"
+                      button_style="btn btn-primary px-5 py-4"
+                      parent-module-id="module-layouts-1"
+                      parent-module="layouts"
+                      data-type="btn"
+                    >
+                      <style>
+                        #module-layouts-1-btn > #btn-module-layouts-1-btn,
+                        #module-layouts-1-btn > a,
+                        #module-layouts-1-btn > button {
+                          background-color: #ff7a01 !important;
+                          color: #ffffff !important;
+                          border-color: #ff7a01 !important;
+                        }
+                        #module-layouts-1-btn > #btn-module-layouts-1-btn:hover,
+                        #module-layouts-1-btn > a:hover,
+                        #module-layouts-1-btn > button:hover {
+                          background-color: rgba(255, 0, 0, 0) !important;
+                          color: #ff7a01 !important;
+                          border-color: #ff7a01 !important;
+                        }
+                      </style>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="ms-md-0 ms-md-5 col-10 col-sm-10 col-md-8 col-xl-5 py-4 cloneable position-relative"
+                >
+                  <div
+                    class="photography-orange-rectangle photography-rectangle-top"
+                  ></div>
+                  <img
+                    src="https://thevideoink.com/wp-content/uploads/2021/11/wysiwyg-uploads_1569586526901-doctor.jpg"
+                    class="w-100"
+                    style="position: relative; z-index: 1"
+                  />
+                  <div
+                    class="photography-orange-rectangle photography-rectangle-bottom"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="wrapper">
+      <div id="left" style="margin-top: 0.5rem; margin-left: 5rem">
+      	<h1>Vùng bệnh</h1>
+        <input id="upload-input" type="file" accept="image/*" style="display: none;">
+  <button id="upload-input" onclick="document.getElementById('upload-input').click();">Tải ảnh lên</button>
+        <div id="preview" style="border: 2px solid black"></div>
+      </div>
+      <div style="margin-left: 100px; ">
+      <form action="http://127.0.0.1:5000" id="myForm">
+        <h1 style="margin-top: 33px; margin-bottom: 3rem">Triệu chứng</h1>
+          <input type="checkbox" id="opt1" name="opt1" value="cp">
+          <label for="opt1"> Phát ban (da xuất hiện các đốm sưng nhỏ, màu đỏ sau đó phát triền thành mụn nước rồi đóng vảy)</label><br>
+          <input type="checkbox" id="opt2" name="opt2" value="ecz">
+          <label for="opt2"> Phát ban (da nổi lên các chấm đỏ, có thể rỉ nước hoặc đóng vảy)</label><br>
+          <input type="checkbox" id="opt3" name="opt3" value="">
+          <label for="opt3"> Ngứa dữ dội</label><br>
+          <input type="checkbox" id="opt4" name="opt4" value="cp">
+          <label for="opt4"> Cảm thấy sốt, mệt mỏi hoặc đau đầu</label><br>
+          <input type="checkbox" id="opt5" name="opt5" value="ecz">
+          <label for="opt5"> Vùng dạ bị đỏ, viêm hoặc sưng</label><br>
+          <input type="checkbox" id="opt6" name="opt6" value="ecz">
+          <label for="opt6"> Các mảng da khô, sần sùi, có vảy hoặc bong tróc</label><br>
+          <input type="checkbox" id="opt7" name="opt7" value="sc">
+          <label for="opt7"> Xuất hiện một khối u mới hoặc khối u thay đồi về kích thước hoặc màu sắc</label><br>
+          <input type="checkbox" id="opt8" name="opt6" value="sc">
+          <label for="opt8"> Khối u ngứa và đau</label><br>
+          <input type="checkbox" id="opt9" name="opt9" value="sc">
+          <label for="opt9"> Khối u có viền nổi lên và phần bên trong chảy máu hoặc đóng vảy</label><br>
+          <input type="checkbox" id="opt10" name="opt10" value="sc">
+          <label for="opt10"> Có vết loét khó lành, chảy máu hoặc đóng vảy</label><br><br>
+
+          
+      </form>
+
+      <p id="result"></p> <!-- Element to display the result -->
+
+      <script>
+          document.getElementById('myForm').addEventListener('use-button', function (e) {
+              e.preventDefault(); // Prevent form submission
+
+              var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+              var selectedChoicesSet = new Set();
+
+              checkboxes.forEach(function (checkbox) {
+                if (checkbox.value === "") {
+                  return; // Bỏ qua checkbox có giá trị rỗng
+                }
+
+                if (checkbox.checked) {
+                  selectedChoicesSet.add(checkbox.value);
+                }
+              });
+
+              var selectedChoices = Array.from(selectedChoicesSet); // Convert set to array
+
+              document.getElementById('result').textContent = "Selected choices: " + selectedChoices.join(", ");
+          });
+      </script>
+      </div>
+      <div class="row" id="output" style="display: none; font-size: 50px">
+        <h1>Kết Quả</h1>
+      </div>
+    </div>
+    <div id="action-buttons">
+      <button id="use-button" onclick="uploadData()">Sử dụng ảnh</button>
+    </div>
+    <h1 id="solution" style="display: none; font-size: 50px">Lời Khuyên</h1>
+    <div id="advice-img" style="display: none">
+      <a href="/images/advices.jpg" target="_blank">
+        <img src="/images/advices.jpg" alt="loikhuyen" class="advice" />
+      </a>
+    </div>
+    <script>
+      // Get DOM elements
+      const uploadInput = document.getElementById("upload-input");
+      const preview = document.getElementById("preview");
+      const myForm = document.getElementById("myForm");
+      const actionButtons = document.getElementById("action-buttons");
+      const cancelButton = document.getElementById("cancel-button");
+      const useButton = document.getElementById("use-button");
+      const outputSection = document.getElementById("output");
+      const solutionText = document.getElementById("solution");
+      const adviceImg = document.getElementById("advice-img");
+
+      // Function to handle image upload
+      function handleImageUpload() {
+        const file = uploadInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const image = document.createElement("img");
+            image.src = e.target.result;
+            image.style.maxWidth = "100%";
+            image.style.maxHeight = "100%";
+            preview.innerHTML = "";
+            preview.appendChild(image);
+            actionButtons.style.display = "block";
+            outputSection.style.display = "none"; // Ẩn phần kết quả
+            solutionText.style.display = "none"; // Ẩn phần Solution
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      // Function to reset the image preview
+      function resetImagePreview() {
+        preview.innerHTML = "";
+        actionButtons.style.display = "none";
+        uploadInput.value = "";
+        outputSection.style.display = "none"; // Ẩn phần kết quả
+        solutionText.style.display = "none"; // Ẩn phần Solution
+      }
+
+      // Function to perform SLIC and skin recognition
+      async function performSkinRecognition(imgData) {
+        const response = await fetch("/perform-skin-recognition", {
+          method: "POST",
+          body: imgData,
+        });
+
+        if (response.ok) {
+          const result = await response.text();
+          try {
+            const json_res = JSON.parse(result);
+            //console.log(json_res); // Xử lý kết quả theo ý muốn (ví dụ: hiển thị cho người dùng)
+            outputSection.style.display = "block"; // Hiển thị phần kết quả
+            solutionText.style.display = "block"; // Hiển thị phần Solution
+            adviceImg.style.display = "block"; // Hiển thị hình ảnh lời khuyên
+
+            const frame = document.querySelector("#output");
+            frame.innerHTML = "<h2>Kết Quả</h2>"; // Xóa bỏ nội dung kết quả trước đó
+
+            for (let i of json_res) {
+              let img = `<div class="column preview">
+                <img src="/images/${i.segment_data}.jpg" alt="" style="width:100%; border: 1px solid black">
+                <p style="margin-top: 1rem; font-size: 1rem">${i.prediction}</p>
+                <p style="margin-top: 0px; font-size: 1rem">chính xác: ${i.confidence}%</p>
+              </div>`;
+              frame.innerHTML += img;
+            }
+
+            // Thay thế ảnh preview ban đầu bằng ảnh thực hiện SLIC
+            const slicImage = document.createElement("img");
+            slicImage.src = "/images/.superpixels.jpg"; // Thay đổi đường dẫn tới ảnh SLIC của bạn
+            slicImage.style.maxWidth = "100%";
+            slicImage.style.maxHeight = "100%";
+            preview.innerHTML = "";
+            preview.appendChild(slicImage);
+
+          } catch {
+            console.error(result); // Xử lý kết quả theo ý muốn (ví dụ: hiển thị cho người dùng)
+            outputSection.style.display = "block"; // Hiển thị phần kết quả
+            outputSection.innerHTML = `<h2>Kết Quả</h2><p>${result}</p>`;
+            solutionText.style.display = "block"; // Hiển thị phần Solution
+            adviceImg.style.display = "block"; // Hiển thị hình ảnh lời khuyên
+          }
+
+          // Ẩn "Triệu chứng", "Choose File", file name, "Sử dụng ảnh" và "Hủy chọn ảnh"
+          myForm.style.display = "none"; 
+          uploadInput.style.display = "none";
+          cancelButton.style.display = "none";
+          useButton.style.display = "none";
+        } else {
+          console.error("Error performing skin recognition");
+        }
+      }
+
+      // Listen to the "change" event on the file input and call the handleImageUpload function
+      uploadInput.addEventListener("change", handleImageUpload);
+
+      // Listen to the "click" event on the cancel button and call the resetImagePreview function
+      cancelButton.addEventListener("click", resetImagePreview);
+
+      // Listen to the "click" event on the use button and call the performSkinRecognition function
+      useButton.addEventListener("click", async () => {
+        const file = uploadInput.files[0];
+        if (file) {
+          const imgData = new FormData();
+          imgData.append("image", file);
+          alert(
+            'Click "OK" to start. \nThis process may take a few seconds to complete!'
+          );
+          await performSkinRecognition(imgData);
+        }
+      });
+    </script>
+  </body>
+</html>
