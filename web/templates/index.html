@@ -155,7 +155,7 @@
 
       #left {
         flex: 0 0 10%;
-        "display: flex;" 
+        display: flex;
         flex-direction: column;
         align-items: center;
         margin-top: 3rem;
@@ -352,7 +352,7 @@
       </div>
     </div>
     <div id="action-buttons">
-      <button id="use-button" onclick="uploadData()">Sử dụng ảnh</button>
+      <button id="use-button">Sử dụng ảnh</button>
     </div>
     <h1 id="solution" style="display: none; font-size: 50px">Lời Khuyên</h1>
     <div id="advice-img" style="display: none">
@@ -402,10 +402,10 @@
       }
 
       // Function to perform SLIC and skin recognition
-      async function performSkinRecognition(imgData) {
+      async function performSkinRecognition(data) {
         const response = await fetch("/perform-skin-recognition", {
           method: "POST",
-          body: imgData,
+          body: data,
         });
 
         if (response.ok) {
@@ -458,19 +458,41 @@
       // Listen to the "change" event on the file input and call the handleImageUpload function
       uploadInput.addEventListener("change", handleImageUpload);
 
-      // Listen to the "click" event on the cancel button and call the resetImagePreview function
-      cancelButton.addEventListener("click", resetImagePreview);
-
       // Listen to the "click" event on the use button and call the performSkinRecognition function
       useButton.addEventListener("click", async () => {
+
+        // getting the selected option
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        var selectedChoicesSet = new Set();
+
+        checkboxes.forEach(function (checkbox) {
+          if (checkbox.value === "") {
+            return; // Bỏ qua checkbox có giá trị rỗng
+          }
+
+          if (checkbox.checked) {
+            selectedChoicesSet.add(checkbox.value);
+          }
+        });
+
+        var selectedChoices = Array.from(selectedChoicesSet); // Convert set to array
+
+        document.getElementById('result').textContent = "Selected choices: " + selectedChoices.join(", ");
+
+        // create a formData object
+        const formData = new FormData();
+        
+        // add the image and the selections to the form data
         const file = uploadInput.files[0];
         if (file) {
-          const imgData = new FormData();
-          imgData.append("image", file);
+          // add image
+          formData.append("image", file);
+          // add selections
+          formData.append("sel", selectedChoices);
           alert(
-            'Click "OK" to start. \nThis process may take a few seconds to complete!'
+          'Click "OK" to start. \nThis process may take a few seconds to complete!'
           );
-          await performSkinRecognition(imgData);
+          await performSkinRecognition(formData);
         }
       });
     </script>

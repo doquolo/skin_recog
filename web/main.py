@@ -17,6 +17,8 @@ def home():
 @app.route("/perform-skin-recognition", methods=['GET', 'POST'])
 def handle_recog():
     if request.method == "POST":
+        selection = (request.values['sel'])
+        print(f"Selections: {selection}")
         image = (request.files['image'])
         image = skimage.io.imread(image)
         try:
