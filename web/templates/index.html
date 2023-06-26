@@ -488,7 +488,10 @@
           // add image
           formData.append("image", file);
           // add selections
-          formData.append("sel", selectedChoices);
+          selectedChoices.forEach((e) => {
+            formData.append('sel[]', e)
+          })
+          // formData.append("sel", selectedChoices);
           alert(
           'Click "OK" to start. \nThis process may take a few seconds to complete!'
           );
