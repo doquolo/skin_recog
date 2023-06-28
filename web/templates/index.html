@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#" lang="en-US" dir="ltr">
+  <!-- Loading effect -->
+
   <head>
     <link
       rel="stylesheet"
@@ -78,13 +80,38 @@
         background-color: ghostwhite;
       }
 
+      .photography-orange-rectangle {
+        position: absolute;
+        width: 92px;
+        height: 120px;
+        background-color: #ff7a01;
+        z-index: 0;
+      }
+
+      .photography-orange-rectangle.photography-rectangle-bottom {
+        bottom: -10px;
+        left: -20px;
+      }
+
+      .photography-orange-rectangle.photography-rectangle-top {
+        top: -10px;
+        right: -20px;
+      }
+
+      .photography-content-27-bottom-box {
+        background-color: #ffffff;
+        top: 100px;
+        z-index: 1;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+
       h1 {
         margin-top: 1rem;
       }
 
       #upload-input {
         margin-bottom: 5px;
-        margin-left: 5.25rem; 
+        margin-left: 0px; 
         display: inline-block;
         padding: 10px 20px;
         background-color: #FFD700;
@@ -142,8 +169,8 @@
       }
 
       .column.preview {
-        margin-right: 3rem;
-        margin-bottom: 4rem;
+        margin-right: 4rem;
+        margin-bottom: 5.5rem;
       }
 
       #wrapper {
@@ -182,30 +209,52 @@
         margin-bottom: 30px;
       }
 
-      .photography-orange-rectangle {
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60vh;
+      }
+      
+      .image {
+          width: 38%;
+          border-radius: 20px;
+          box-shadow: 0 2px 4px rgba(0, 1, 1, 0.5);
+          
+      }
+      
+      .text1 {
+          width: 62%;
+          padding-left: 20px;
+          font-size: 18px;
+          text-align: left;
+      }
+      .text2 {
+          width: 62%;
+          padding-right: 30px;
+          font-size: 18px;
+          text-align: right;
+      }
+      
+      ul1 {
+        direction: rtl; /* Căn lề văn bản sang phải */
+        list-style-type: none; /* Loại bỏ bullets mặc định */
+        padding: 0;
+        style = "margin-top: 0px;";
+      }
+
+      li1 {
+        position: relative; /* Thiết lập vị trí tương đối để đặt bullet */
+        padding-right: 20px; /* Khoảng cách giữa bullet và văn bản */
+      }
+
+      li1:before {
+        content: "\2022"; /* Ký hiệu bullet (này là một hình tròn) */
         position: absolute;
-        width: 92px;
-        height: 120px;
-        background-color: #ff7a01;
-        z-index: 0;
+        right: 0;
+        font-size: 18;
       }
 
-      .photography-orange-rectangle.photography-rectangle-bottom {
-        bottom: -10px;
-        left: -20px;
-      }
-
-      .photography-orange-rectangle.photography-rectangle-top {
-        top: -10px;
-        right: -20px;
-      }
-
-      .photography-content-27-bottom-box {
-        background-color: #ffffff;
-        top: 100px;
-        z-index: 1;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-      }
     </style>
   </head>
   <body>
@@ -221,22 +270,14 @@
             <div class="col-12 col-xl-10 mx-auto">
               <div class="row d-flex align-items-center justify-content-center">
                 <div class="col-12 col-lg-6 allow-drop py-4">
-                  <h1
-                    class="header-section-title"
-                    style="color: #ffffff; font-size: 80px; line-height: 106px"
-                  >
+                  <h1 class="header-section-title" style="color: #ffffff; font-size: 80px; line-height: 106px">
                     Chẩn đoán bệnh da
                   </h1>
-                  <p
-                    class="header-section-p lead my-8"
-                    style="color: #ffffff; font-size: 35px;"
-                  >
+                  <p class="header-section-p lead my-8" style="color: #ffffff; font-size: 35px;">
                     Vì một cuộc sống khỏe mạnh 
                   </p>
 
-                  <div
-                    class="nodrop d-flex align-items-center justify-content-start cloneable"
-                  >
+                  <div class="nodrop d-flex align-items-center justify-content-start cloneable">
                     <div
                       class="module module-btn"
                       id="module-layouts-1-btn"
@@ -267,20 +308,14 @@
                   </div>
                 </div>
 
-                <div
-                  class="ms-md-0 ms-md-5 col-10 col-sm-10 col-md-8 col-xl-5 py-4 cloneable position-relative"
-                >
-                  <div
-                    class="photography-orange-rectangle photography-rectangle-top"
-                  ></div>
+                <div class="ms-md-0 ms-md-5 col-10 col-sm-10 col-md-8 col-xl-5 py-4 cloneable position-relative">
+                  <div class="photography-orange-rectangle photography-rectangle-top"></div>
                   <img
                     src="https://thevideoink.com/wp-content/uploads/2021/11/wysiwyg-uploads_1569586526901-doctor.jpg"
                     class="w-100"
                     style="position: relative; z-index: 1"
                   />
-                  <div
-                    class="photography-orange-rectangle photography-rectangle-bottom"
-                  ></div>
+                  <div class="photography-orange-rectangle photography-rectangle-bottom"></div>
                 </div>
               </div>
             </div>
@@ -288,42 +323,43 @@
         </div>
       </div>
     </section>
+
     <div id="wrapper">
+
       <div id="left" style="margin-top: 0.5rem; margin-left: 5rem">
       	<h1>Vùng bệnh</h1>
         <input id="upload-input" type="file" accept="image/*" style="display: none;">
-  <button id="upload-input" onclick="document.getElementById('upload-input').click();">Tải ảnh lên</button>
-        <div id="preview" style="border: 2px solid black"></div>
+        <button id="upload-input" onclick="document.getElementById('upload-input').click();">Tải ảnh lên</button>
+        <div id="preview" style="border: 2px solid black; margin-left: 5px"></div>
       </div>
+
       <div style="margin-left: 100px; ">
       <form action="http://127.0.0.1:5000" id="myForm">
         <h1 style="margin-top: 33px; margin-bottom: 3rem">Triệu chứng</h1>
-          <input type="checkbox" id="opt1" name="opt1" value="cp">
+          <input type="checkbox" id="opt1" name="opt1" value="thủy đậu">
           <label for="opt1"> Phát ban (da xuất hiện các đốm sưng nhỏ, màu đỏ sau đó phát triền thành mụn nước rồi đóng vảy)</label><br>
-          <input type="checkbox" id="opt2" name="opt2" value="ecz">
-          <label for="opt2"> Phát ban (da nổi lên các chấm đỏ, có thể rỉ nước hoặc đóng vảy)</label><br>
+          <input type="checkbox" id="opt2" name="opt2" value="thủy đậu">
+          <label for="opt2"> Cảm thấy sốt, mệt mỏi hoặc đau đầu</label><br>
           <input type="checkbox" id="opt3" name="opt3" value="">
           <label for="opt3"> Ngứa dữ dội</label><br>
-          <input type="checkbox" id="opt4" name="opt4" value="cp">
-          <label for="opt4"> Cảm thấy sốt, mệt mỏi hoặc đau đầu</label><br>
-          <input type="checkbox" id="opt5" name="opt5" value="ecz">
+          <input type="checkbox" id="opt4" name="opt4" value="chàm">
+          <label for="opt4"> Phát ban (da nổi lên các chấm đỏ, có thể rỉ nước hoặc đóng vảy)</label><br>
+          <input type="checkbox" id="opt5" name="opt5" value="chàm">
           <label for="opt5"> Vùng dạ bị đỏ, viêm hoặc sưng</label><br>
-          <input type="checkbox" id="opt6" name="opt6" value="ecz">
+          <input type="checkbox" id="opt6" name="opt6" value="chàm">
           <label for="opt6"> Các mảng da khô, sần sùi, có vảy hoặc bong tróc</label><br>
-          <input type="checkbox" id="opt7" name="opt7" value="sc">
+          <input type="checkbox" id="opt7" name="opt7" value="ung thư da">
           <label for="opt7"> Xuất hiện một khối u mới hoặc khối u thay đồi về kích thước hoặc màu sắc</label><br>
-          <input type="checkbox" id="opt8" name="opt6" value="sc">
+          <input type="checkbox" id="opt8" name="opt6" value="ung thư da">
           <label for="opt8"> Khối u ngứa và đau</label><br>
-          <input type="checkbox" id="opt9" name="opt9" value="sc">
+          <input type="checkbox" id="opt9" name="opt9" value="ung thư da">
           <label for="opt9"> Khối u có viền nổi lên và phần bên trong chảy máu hoặc đóng vảy</label><br>
-          <input type="checkbox" id="opt10" name="opt10" value="sc">
-          <label for="opt10"> Có vết loét khó lành, chảy máu hoặc đóng vảy</label><br><br>
-
-          
+          <input type="checkbox" id="opt10" name="opt10" value="ung thư da">
+          <label for="opt10"> Có vết loét khó lành, chảy máu hoặc đóng vảy</label><br><br>  
       </form>
-
-      <p id="result"></p> <!-- Element to display the result -->
-
+      
+      <!--<p id="result"></p>  Element to display the result -->
+      
       <script>
           document.getElementById('myForm').addEventListener('use-button', function (e) {
               e.preventDefault(); // Prevent form submission
@@ -343,23 +379,80 @@
 
               var selectedChoices = Array.from(selectedChoicesSet); // Convert set to array
 
-              document.getElementById('result').textContent = "Selected choices: " + selectedChoices.join(", ");
+              // document.getElementById('result').textContent = "Selected choices: " + selectedChoices.join(", ");
           });
       </script>
       </div>
+
       <div class="row" id="output" style="display: none; font-size: 50px">
         <h1>Kết Quả</h1>
       </div>
+
     </div>
+
     <div id="action-buttons">
-      <button id="use-button">Sử dụng ảnh</button>
+      <button id="use-button">Bắt đầu chẩn đoán</button>
     </div>
+  
+    
     <h1 id="solution" style="display: none; font-size: 50px">Lời Khuyên</h1>
-    <div id="advice-img" style="display: none">
-      <a href="/images/advices.jpg" target="_blank">
-        <img src="/images/advices.jpg" alt="loikhuyen" class="advice" />
-      </a>
+
+    <div id="advice" style="display: none">
+      <div class="container">
+        <img class="image" src="https://d.newsweek.com/en/full/1076279/chickenpox-stock.jpg" alt="Ảnh 1" />
+        <div class="text1" style = "margin-left: 10px">
+            <h1 style = "margin-bottom: 12px; margin-left: 10px;">Thủy đậu</h1>
+            <ul style = "margin-top: 0px;">
+              <li>Nên thăm khám bác sĩ</li>
+              <li>Hạn chế tiếp xúc với người khác</li>
+              <li>Tránh gãi mụn nước</li>
+              <li>Không băng kín vết phồng rộp</li>
+              <li>Giữ gìn vệ sinh tốt</li>
+              <!--<li>Giữ nước</li> -->
+              <li>Nghỉ ngơi nhiều, ăn uống đủ chất</li>
+              <li>Có thể dùng thuốc giảm đau</li>
+              <!--<li>Không dùng aspirin</li> -->
+              <li>Không dùng thuốc chống viêm không steroid</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="container" style ="margin-top: 2rem;">
+          <div class="text2" style = "margin-right: 10px; margin-top: -20px">
+              <h1 style = "margin-bottom: 12px; margin-right: 5px;">Chàm</h1>
+              <ul1>
+                <li1>Nên thăm khám bác sĩ</li1><br>
+                <li1>Xác định và tránh các tác nhân gây bệnh</li1><br>
+                <!--<li>Dưỡng ẩm, chăm sóc</li>-->
+                <li1>Bôi thuốc theo toa</li1><br>
+                <li1>Mặc quần áo thoải mái</li1><br>
+                <li1>Kiểm soát căng thẳng</li1><br>
+                <li1>Hạn chế gãi làm tổn thương da</li1><br>
+                <li1>Tránh sử dụng nước nóng và xà phòng, chất tẩy rửa mạnh</li1><br>
+                <!--<li>Không sử dụng nước nóng</li>-->
+                <li1>Tránh dùng nhiều kem hoặc thuốc mỡ corticosteroid</li1><br>
+            </ul1>
+          </div>
+          <img class="image" src="https://www.thesun.co.uk/wp-content/uploads/2022/07/NINTCHDBPICT000733794880.jpg" alt="Ảnh 2" />
+      </div>
+      
+      <div class="container" style ="margin-top: 0.5rem;">
+          <img class="image" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/353797550_926383761994250_2554919916316033964_n.jpg?stp=dst-jpg_s403x403&_nc_cat=110&cb=99be929b-3346023f&ccb=1-7&_nc_sid=aee45a&_nc_ohc=aPWHe3x4NwsAX9IfmBT&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdTJxNIVjaC4wpkaqGnTvg48XPcbA-ZPwZNyzWK3m9tCCw&oe=64C33A88" alt="Ảnh 3" />
+          <div class="text1" style = "margin-left: 10px">
+              <h1 style = "margin-bottom: 12px; margin-left: 10px;">Ung thư da</h1>
+              <ul style = "margin-top: 0px;">
+                <li>Nên thăm khám bác sĩ</li>
+                <li>Hạn chế tiếp xúc với tia UV</li>
+                <li>Mặc quần áo bảo hộ, dùng kem chống nắng</li>
+                <li>Để ý bất kỳ thay đổi nào của da</li>
+                <li>Kiểm tra, theo dõi định kỳ tại các phòng khám</li>
+            </ul>
+          </div>       
+      </div>
+
     </div>
+
+
     <script>
       // Get DOM elements
       const uploadInput = document.getElementById("upload-input");
@@ -370,7 +463,7 @@
       const useButton = document.getElementById("use-button");
       const outputSection = document.getElementById("output");
       const solutionText = document.getElementById("solution");
-      const adviceImg = document.getElementById("advice-img");
+      const advice = document.getElementById("advice");
 
       // Function to handle image upload
       function handleImageUpload() {
@@ -415,16 +508,16 @@
             //console.log(json_res); // Xử lý kết quả theo ý muốn (ví dụ: hiển thị cho người dùng)
             outputSection.style.display = "block"; // Hiển thị phần kết quả
             solutionText.style.display = "block"; // Hiển thị phần Solution
-            adviceImg.style.display = "block"; // Hiển thị hình ảnh lời khuyên
+            advice.style.display = "block"; // Hiển thị hình ảnh lời khuyên
 
             const frame = document.querySelector("#output");
             frame.innerHTML = "<h2>Kết Quả</h2>"; // Xóa bỏ nội dung kết quả trước đó
 
             for (let i of json_res) {
-              let img = `<div class="column preview">
+              let img = `<div class="column preview" style="border: 2px solid black">
                 <img src="/images/${i.segment_data}.jpg" alt="" style="width:100%; border: 1px solid black">
-                <p style="margin-top: 1rem; font-size: 1rem">${i.prediction}</p>
-                <p style="margin-top: 0px; font-size: 1rem">chính xác: ${i.confidence}%</p>
+                <p style="margin-top: 1rem; margin-bottom: 0px; font-size: 1.25rem">${i.prediction}</p>
+                <p style="margin-top: 0px; font-size: 1.25rem">chính xác: ${i.confidence}%</p>
               </div>`;
               frame.innerHTML += img;
             }
@@ -442,13 +535,12 @@
             outputSection.style.display = "block"; // Hiển thị phần kết quả
             outputSection.innerHTML = `<h2>Kết Quả</h2><p>${result}</p>`;
             solutionText.style.display = "block"; // Hiển thị phần Solution
-            adviceImg.style.display = "block"; // Hiển thị hình ảnh lời khuyên
+            advice.style.display = "block"; // Hiển thị hình ảnh lời khuyên
           }
 
-          // Ẩn "Triệu chứng", "Choose File", file name, "Sử dụng ảnh" và "Hủy chọn ảnh"
+          // Ẩn "Triệu chứng", "Choose File", file name, "Bắt đầu chẩn đoán" và "Hủy chọn ảnh"
           myForm.style.display = "none"; 
           uploadInput.style.display = "none";
-          cancelButton.style.display = "none";
           useButton.style.display = "none";
         } else {
           console.error("Error performing skin recognition");
@@ -474,10 +566,11 @@
             selectedChoicesSet.add(checkbox.value);
           }
         });
+        selectedChoicesSet.add('khỏe mạnh'); 
 
         var selectedChoices = Array.from(selectedChoicesSet); // Convert set to array
 
-        document.getElementById('result').textContent = "Selected choices: " + selectedChoices.join(", ");
+        // document.getElementById('result').textContent = "Selected choices: " + selectedChoices.join(", ");
 
         // create a formData object
         const formData = new FormData();
@@ -495,7 +588,7 @@
           alert(
           'Click "OK" to start. \nThis process may take a few seconds to complete!'
           );
-          await performSkinRecognition(formData);
+          await performSkinRecognition(formData);          
         }
       });
     </script>
