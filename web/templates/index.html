@@ -71,6 +71,48 @@
     />
     <meta name="generator" content="Microweber" />
 
+
+    <style>
+      #loading-overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+      }
+
+      .loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      body.loading {
+        overflow: hidden;
+      }
+    </style>
+
     <style>
       body {
         display: flex;
@@ -258,6 +300,9 @@
     </style>
   </head>
   <body>
+    <div id="loading-overlay" style="display: none;">
+      <div class="loader"></div>
+    </div>
     <section
       class="section pb-0 edit safe-mode mb-8 pt-0"
       field="layout-header-skin-27-module-layouts-1"
@@ -504,6 +549,9 @@
         if (response.ok) {
           const result = await response.text();
           try {
+            // remove loading animation
+            document.querySelector("#loading-overlay").style.display = 'none';
+            document.body.classList.remove("loading")
             const json_res = JSON.parse(result);
             //console.log(json_res); // Xử lý kết quả theo ý muốn (ví dụ: hiển thị cho người dùng)
             outputSection.style.display = "block"; // Hiển thị phần kết quả
@@ -588,6 +636,9 @@
           alert(
           'Click "OK" to start. \nThis process may take a few seconds to complete!'
           );
+          // start loading animation
+          document.querySelector("#loading-overlay").style.display = 'flex';
+          document.body.classList.add("loading");
           await performSkinRecognition(formData);          
         }
       });
