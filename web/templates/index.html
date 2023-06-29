@@ -552,6 +552,9 @@
             // remove loading animation
             document.querySelector("#loading-overlay").style.display = 'none';
             document.body.classList.remove("loading")
+            // remove upload button
+            document.querySelector("button#upload-input").style.display = "none"
+            
             const json_res = JSON.parse(result);
             //console.log(json_res); // Xử lý kết quả theo ý muốn (ví dụ: hiển thị cho người dùng)
             outputSection.style.display = "block"; // Hiển thị phần kết quả
