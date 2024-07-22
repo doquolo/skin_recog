@@ -3,31 +3,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const preview = document.getElementById("preview");
   const useButton = document.getElementById("use-button");
 
-  let selectedChoice = []
   let uploadedFilename = "";
 
   // My form
   document.getElementById("myForm").addEventListener("use-button", function (e) {
       e.preventDefault(); // Prevent form submission
-
-      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      var selectedChoicesSet = new Set();
-
-      checkboxes.forEach(function (checkbox) {
-      if (checkbox.value === "") {
-          return; // Bỏ qua checkbox có giá trị rỗng
-      }
-
-      if (checkbox.checked) {
-          selectedChoicesSet.add(checkbox.value);
-      }
-      });
-
-       
-      selectedChoice = Array.from(selectedChoicesSet); // Convert set to array
-      alert(selectedChoicesSet);
-      alert("Hello Trọng");
-      
   });
 
 
@@ -76,6 +56,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 
   async function performSkinRecognition() {
+
+      // get choices
+      var checkboxes = document.querySelectorAll('[name="problem"]');
+      var selectedChoicesSet = new Set();
+
+      checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            selectedChoicesSet.add(checkbox.value);
+        }
+      });
+
+      
+      let selectedChoice = Array.from(selectedChoicesSet); // Convert set to array
+
+      // continue with normal stuff
       const formData = new FormData();
       formData.append("filename", uploadedFilename);
       formData.append("sel", selectedChoice)

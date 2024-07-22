@@ -43,10 +43,10 @@ def save_image():
 @app.route('/perform-skin-recognition', methods=['POST'])
 def handle_recog():
     # Receive array options from frontend
-    selection = (request.form.getlist('sel[]'))
+    selection = request.form.get("sel").split(",")
+    print(selection)
     if 'healthy' not in selection: 
         selection.append("healthy")
-    print(selection)
         
     # Receive filename from frontend
     filename = request.form.get('filename')

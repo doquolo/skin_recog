@@ -1,4 +1,8 @@
 import PySimpleGUI as sg
+sg.theme("SystemDefaultForReal")
+
+import socket
+
 import sys
 import os
 import home
@@ -21,15 +25,17 @@ class MultilineHandler(logging.Handler):
 def startServer():
     # Define the layout of your window
     layout = [
-        [sg.Button('Run', key="-run-"), sg.Button('Exit')],
-        [sg.Text("Server Log:")],
-        [sg.Multiline(size=(120, 20), key="-output-", background_color="#000", text_color="#ffb6c1",
+        [sg.Button('Chạy máy chủ', key="-run-"), sg.Button('Thoát', key="-exit-")],
+        [sg.Text("Nhật kí máy chủ:")],
+        [sg.Multiline(size=(120, 20), key="-output-", background_color="#fff", text_color="#000",
                       reroute_stdout=True, reroute_stderr=True, reroute_cprint=True, auto_size_text=True, autoscroll=True)],
+        [sg.Text("", visible=False, key="-iptext-")],
+        [sg.StatusBar(text="Trạng thái máy chủ: Ngoại tuyến", key="-status-", relief=sg.RELIEF_FLAT)]           
     ]
 
     # Create the window
-    window = sg.Window('Server', layout, finalize=True,
-                       enable_close_attempted_event=False)
+    window = sg.Window('Nhận diện da - Nhật ký máy chủ', layout, finalize=True,
+                       enable_close_attempted_event=True)
 
     # Get the multiline element to add the handler
     multiline = window['-output-']
@@ -42,7 +48,7 @@ def startServer():
     # Event loop to process events and display output
     while True:
         event, values = window.read()
-        if event in (sg.WINDOW_CLOSED, 'Exit'):
+        if event in (sg.WINDOW_CLOSE_ATTEMPTED_EVENT, '-exit-'):
             window.close()
             os._exit(1)
         elif event == '-run-':
@@ -77,6 +83,13 @@ def startServer():
 
             # Gray out the run button
             window["-run-"].update(disabled=True)
+            # get local ip
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))
+            window["-iptext-"].update(visible=True)
+            window["-iptext-"].update(f"Máy chủ trực tuyến tại: http://{s.getsockname()[0]}:5000")
+            # update status
+            window["-status-"].update("Trạng thái máy chủ: Trực tuyến")
 
 if __name__ == "__main__":
     startServer()
