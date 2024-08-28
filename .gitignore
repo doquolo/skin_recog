@@ -1,0 +1,6 @@
+web/Include
+web/Lib
+web/Scripts
+web/share
+web/pyvenv.cfg
+web/__pycache__
