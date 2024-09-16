@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-    width: 80vw;
+    width: 50vw;
     height: 50vw;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@ body {
 }
 
 .title {
-    font-size: 30px;
+    font-size: 27px;
     font-weight: 600;
 }
 
@@ -31,21 +31,21 @@ body {
 }
 
 .logo > img {
-    width: 90%;
+    width: 40vw;
 }
 
-.container > input {
+.container > input, .container > select {
     border-radius: 5px;
 }
-.container > input[type="password"], .container > input[type="text"] {
-    width: 60% !important;
+.container > input[type="password"], .container > input[type="text"], .container > select {
+    width: 40vw !important;
     padding: 1rem .5rem;
     margin-bottom: .5rem;
     font-size: 15px;
 }
 
 .container > input[type="button"] {
-    width: 60% !important;
+    width: 41vw !important;
     padding: .75rem .25rem;
     border: 1px solid black;
     background-color: red;
@@ -58,4 +58,31 @@ body {
     border: 1px solid black;
     background-color: rgb(183, 5, 5);
     color: white;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.footer > p {
+    margin-left: 5px;
+}
+
+.footer > .link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    .logo > img {
+        width: 80vw;
+    }
+    .container > input[type="password"], .container > input[type="text"], .container > select {
+        width: 80vw !important;
+    }
+    .container > input[type="button"] {
+        width: 83vw !important;
+    }
 }

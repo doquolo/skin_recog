@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 </head>
 <body>
-    <div class="container" id="login" style="display: flex;">
+    <div class="container" id="login-div" style="display: flex;">
         <div class="logo">
             <img src="{{url_for('static', filename='assets/logo.png')}}" alt="" class="">
         </div>
@@ -15,16 +15,22 @@
         <input type="text" name="username" id="username-login" placeholder="Tên Đăng Nhập">
         <input type="password" name="password" id="password-login" placeholder="Mật Khẩu">
         <input type="button" value="Đăng Nhập" id="login">
+        <div class="footer">hoặc <p class="link" id="switchReg">Đăng Kí</p></div>
     </div>
-    <div class="container" id="register" style="display: none;">
+    <div class="container" id="register-div" style="display: none;">
         <div class="logo">
             <img src="{{url_for('static', filename='assets/logo.png')}}" alt="" class="">
         </div>
         <p class="title">Đăng Kí</p>
-        <input type="text" name="name" id="name-register">
-        <input type="text" name="username" id="username-register">
-        <input type="password" name="password" id="password-register">
+        <input type="text" name="name" id="name-register" placeholder="Họ Tên">
+        <input type="text" name="username" id="username-register" placeholder="Tên Đăng Nhập">
+        <input type="password" name="password" id="password-register" placeholder="Mật Khẩu">
+        <select name="role" id="role" aria-placeholder="Vai Trò">
+            <option value="user">Nguời Dùng</option>
+            <option value="doc">Bác Sĩ</option>
+        </select>
         <input type="button" value="Đăng Kí" id="register">
+        <div class="footer">hoặc <p class="link" id="switchLogin">Đăng Nhập</p></div>
     </div>
     <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 </body>

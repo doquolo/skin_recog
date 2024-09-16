@@ -8,31 +8,86 @@ import os
 import requests
 import uuid
 import datetime
+import firebase_admin
+from firebase_admin import firestore
 
+# connect to db
+creds = firebase_admin.credentials.Certificate("firebase_creds.json")
+default_app = firebase_admin.initialize_app(creds)
+firestore = firestore.client()
+
+# webapp start
 app = Flask(__name__)
 
+# stores sessionID
 currentUser = {
-  "1234": {
-      "username": "testing",
-      "startTime": int(datetime.datetime.now().timestamp()),
-      "userID": "12345"
-  }
+    '1234': {
+        'name': "test",
+        'exptime': int((datetime.datetime.now() + datetime.timedelta(minutes=5)).timestamp()),
+    }
 }
 
-
-@app.route('/')
+@app.route('/', methods=["POST", "GET"])
 def source():
-    sessionID = request.data.get("sessionID")
-    try:
-        user = currentUser[sessionID]
-        return redirect('/home', code=302)
-    except KeyError:    
-        return redirect('/login', code=302)
-    
-@app.route('/login')
-def login():
-    return render_template('login.html')
+    if (request.method == "POST"):
+        sessionID = request.json.get('sessionID')
+        try:
+            user = currentUser[str(sessionID)]
+            if (int(user['exptime']) > int(datetime.datetime.now().timestamp())):
+                return jsonify({'status': 'true'})
+            else:
+                return jsonify({'status': 'false', 'reason': 'expired'})
+        except Exception as e:
+                return jsonify({'status': 'false', 'reason': 'notfound'})
 
+    elif (request.method == "GET"):
+        return render_template('source.html')
+
+# authenticate
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    if (request.method == "GET"):
+        return render_template('login.html')
+    elif (request.method == "POST"):
+        action = request.json.get("action")
+        if (action == "login"):
+            username = request.json.get("username")
+            password = request.json.get("password")
+            userbase = firestore.collection('users').get().to_dict()
+            for key, value in userbase.iteritems():
+                if (value["password"] == password and value["username"] == username):
+                    sessionID = uuid.uuid4().hex
+                    currentUser[str(sessionID)] = {
+                        "name": value["name"],
+                        "userID": key,
+                        "role": value["role"]
+                    }
+                    return jsonify({
+                        "status": "true", 
+                        "data": {
+                            "name": value["name"],
+                            "userID": key,
+                            "role": value["role"]
+                        }
+                    })
+            return jsonify({"status": "false"})
+        elif (action == "register"):
+            name = request.json.get("name")
+            username = request.json.get("username")
+            password = request.json.get("password")
+            role = request.json.get("role")
+            userbase = firestore.collection('users')
+            userbase.document(uuid.uuid4().hex).set({
+                "name": name,
+                "username": username,
+                "password": password,
+                "role": role
+            })
+            return jsonify({"status": "true"})
+        else:
+            return False
+
+# home for real
 @app.route("/home")
 def home():
     return render_template('home.html')
