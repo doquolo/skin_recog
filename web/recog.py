@@ -6,15 +6,9 @@ from skimage.segmentation import slic, mark_boundaries
 from skimage.util import img_as_float
 from tensorflow import keras
 import numpy as np
-import io
 import os
-import requests
-import skimage.io
-from flask import Flask, render_template, request, send_file, jsonify
 
-app = Flask(__name__)
-
-MODEL_FOLDER = os.path.join(app.root_path, 'models')
+MODEL_FOLDER = os.path.join(os.curdir, 'models')
 
 def predict_with_model(img, selection):
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)

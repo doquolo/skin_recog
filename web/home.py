@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file, jsonify
+from flask import Flask, render_template, request, send_file, jsonify, redirect
 import recog
 import skimage.io
 from PIL import Image
@@ -6,10 +6,34 @@ import numpy as np
 import io
 import os
 import requests
+import uuid
+import datetime
 
 app = Flask(__name__)
 
-@app.route("/")
+currentUser = {
+  "1234": {
+      "username": "testing",
+      "startTime": int(datetime.datetime.now().timestamp()),
+      "userID": "12345"
+  }
+}
+
+
+@app.route('/')
+def source():
+    sessionID = request.data.get("sessionID")
+    try:
+        user = currentUser[sessionID]
+        return redirect('/home', code=302)
+    except KeyError:    
+        return redirect('/login', code=302)
+    
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route("/home")
 def home():
     return render_template('home.html')
 
@@ -98,64 +122,5 @@ def get_segment_image(folder, filename):
     file_object.seek(0)
     return send_file(file_object, mimetype='image/jpeg')
 
-
-@app.route("/askGPT", methods=['POST'])
-def chatGPT():
-    def chatGPT(ques):
-        url = "https://chatgpt-api8.p.rapidapi.com/"
-
-        payload = [
-            {
-                "content": "Hello! I'm an AI assistant bot based on ChatGPT 3. How may I help you?",
-                "role": "system"
-            },
-            {
-                "content": f"{ques}",
-                "role": "user"
-            }
-        ]
-        headers = {
-            "content-type": "application/json",
-            "X-RapidAPI-Key": "030c80dc47mshbe06ccceee3100cp18b554jsnc6867b4f1b65",
-            "X-RapidAPI-Host": "chatgpt-api8.p.rapidapi.com"
-        }
-        # huytrongnghia: 8dd3bfa3f3mshda3845149bb330ep1c4505jsna147eee499b5
-        # khkt: d89a8977f9mshd28e97843a01cf2p158370jsn0cb69019b238
-        # huynghia: 8eacc0c16dmshb79a0fe65bc3344p14e02ajsn29bf84e2e8b9
-        # huytrong: 030c80dc47mshbe06ccceee3100cp18b554jsnc6867b4f1b65
-        # nguyenquynh: 0c6c1ec218msh58fce662b00a268p1e2172jsn77027176568f
-
-        response = requests.post(url, json=payload, headers=headers)
-        data = response.json()
-
-        return data["text"]
-
-    try:
-        data = request.json
-        user_message = data['message']
-
-        # Call your ChatGPT function here
-        bot_message = chatGPT(user_message)
-
-        return jsonify({'content': bot_message})
-    except Exception as e:
-        return jsonify({'error': str(e)})
-
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
-    
-
-# cấu trúc thư mục:
-# 
-# ├── backend.py 
-# ├── recog.py                        
-# ├── static/                        
-# │   ├── style.css                  
-# │   └── script.js      
-# │   └── images/               
-# ├── templates/                     
-# │   └── home.html                 
-# ├── history/                     
-# ├── segments/               # chứa những thư mục ảnh nhỏ hơn 
-# └── test/
+    app.run(host='0.0.0.0', port=80, debug=True)
