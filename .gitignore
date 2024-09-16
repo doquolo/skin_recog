@@ -4,3 +4,4 @@ web/Scripts
 web/share
 web/pyvenv.cfg
 web/__pycache__
+web/firebase_creds.json
