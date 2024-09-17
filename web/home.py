@@ -53,21 +53,24 @@ def login():
         if (action == "login"):
             username = request.json.get("username")
             password = request.json.get("password")
-            userbase = firestore.collection('users').get().to_dict()
-            for key, value in userbase.iteritems():
+            userbase = firestore.collection('users').stream()
+            for user in userbase:
+                key, value = user.id, user.to_dict()
                 if (value["password"] == password and value["username"] == username):
                     sessionID = uuid.uuid4().hex
                     currentUser[str(sessionID)] = {
-                        "name": value["name"],
+                        "name": value["name"],  
                         "userID": key,
-                        "role": value["role"]
+                        "role": value["role"],
+                        "exptime": int((datetime.datetime.now() + datetime.timedelta(minutes=15)).timestamp())
                     }
                     return jsonify({
                         "status": "true", 
                         "data": {
                             "name": value["name"],
                             "userID": key,
-                            "role": value["role"]
+                            "role": value["role"],
+                            "sessionID": str(sessionID)
                         }
                     })
             return jsonify({"status": "false"})
@@ -88,9 +91,24 @@ def login():
             return False
 
 # home for real
-@app.route("/home")
+@app.route("/home", methods=["POST", "GET"])
 def home():
-    return render_template('home.html')
+    if (request.method == "POST"):
+        sessionID = request.json.get("sessionID")
+        try: 
+            user = currentUser[sessionID]
+            return jsonify({
+                "status": "true", 
+                "data": {
+                    "name": user["name"],
+                    "userID": user["userID"],
+                    "role": user["role"]
+                }
+            })
+        except Exception as e:
+            return jsonify({"status": "false"})
+    elif (request.method == "GET"):
+        return render_template('home.html')
 
 # Path to the folders containing images
 HISTORY_FOLDER = os.path.join(app.root_path, 'history')

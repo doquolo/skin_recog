@@ -6,22 +6,7 @@
     <title>Pharmabox</title>
   </head>
   <body>
-    <script>
-      function getCookie(cname) {
-        let name = cname + "=";
-        let ca = document.cookie.split(";");
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == " ") {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-      }
-    </script>
+    <script src="{{url_for('static', filename='js/cookie.js')}}"></script>
     <script>
         sessionID = getCookie('sessionID')
         if (sessionID == "") {
@@ -31,7 +16,10 @@
                 method: "POST",
                 body: JSON.stringify({
                     sessionID: sessionID
-                })
+                }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
             })
             .then(req => {return req.json()})
             .then(res => {
@@ -39,7 +27,7 @@
                     document.cookie = "";
                     location.replace('/login');
                 } else {
-                    Location.replace('/home');
+                    location.replace('/home');
                 }
             })
         }

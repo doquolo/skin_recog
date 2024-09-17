@@ -14,6 +14,22 @@ const handleNavbar = (elem) => {
 }
 
 window.addEventListener("DOMContentLoaded", (event) => {
+
+  fetch('/home',  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "sessionID": String(getCookie('sessionID'))
+    })
+  })
+  .then(res => {return res.json()})
+  .then(req => {
+    console.log(req);
+    if (req.status == "false") location.replace('/login')
+  })
+
   const uploadInput = document.getElementById("upload-input");
   const preview = document.getElementById("preview");
   const useButton = document.getElementById("use-button");
