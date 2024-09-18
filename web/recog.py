@@ -49,7 +49,7 @@ def predict_with_model(img, selection):
         model = keras.models.load_model(f'{MODEL_FOLDER}/a-r-c-h.h5')
     elif selection == ['der', 'rw', 'sc', 'healthy']:
         model = keras.models.load_model(f'{MODEL_FOLDER}/d-r-c-h.h5')
-    elif selection == ['acne', 'der', 'rw', 'sc', 'healthy'] or selection == ['healthy']:
+    elif selection == ['acne', 'der', 'rw', 'sc', 'healthy'] or selection == ['healthy'] or selection == ['']:
         selection = ['acne', 'der', 'rw', 'sc', 'healthy']
         model = keras.models.load_model(f'{MODEL_FOLDER}/a-d-r-c-h.h5')
     

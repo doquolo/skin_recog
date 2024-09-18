@@ -90,6 +90,16 @@ def login():
         else:
             return False
 
+@app.route("/logout")
+def logout():
+    sessionID = request.args.get("id")
+    try:
+        currentUser.pop(str(sessionID))
+        return redirect('/login')
+    except Exception as e:
+        return redirect('/login')
+
+
 # home for real
 @app.route("/home", methods=["POST", "GET"])
 def home():
@@ -114,6 +124,11 @@ def home():
 HISTORY_FOLDER = os.path.join(app.root_path, 'history')
 TEST_FOLDER = os.path.join(app.root_path, 'test')
 SEGMENTS_FOLDER = os.path.join(app.root_path, 'segments')
+
+@app.route("/requestDoc", methods=['POST'])
+def requestDoc():
+    print(request.json)
+    return {'status': 'true'}
 
 @app.route('/save-image', methods=['POST'])
 def save_image():
