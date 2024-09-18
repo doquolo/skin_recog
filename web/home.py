@@ -34,7 +34,7 @@ def source():
         try:
             user = currentUser[str(sessionID)]
             if (int(user['exptime']) > int(datetime.datetime.now().timestamp())):
-                return jsonify({'status': 'true'})
+                return jsonify({'status': 'true', 'home': f'{user["role"]}'})
             else:
                 return jsonify({'status': 'false', 'reason': 'expired'})
         except Exception as e:
@@ -107,6 +107,8 @@ def home():
         sessionID = request.json.get("sessionID")
         try: 
             user = currentUser[sessionID]
+            if (user["role"] != "user"):
+                raise Exception
             return jsonify({
                 "status": "true", 
                 "data": {
@@ -119,16 +121,52 @@ def home():
             return jsonify({"status": "false"})
     elif (request.method == "GET"):
         return render_template('home.html')
+    
+@app.route("/DocHome", methods=["POST", "GET"])
+def dochome():
+    if (request.method == "POST"):
+        sessionID = request.json.get("sessionID")
+        try: 
+            user = currentUser[sessionID]
+            if (user["role"] != "doc"):
+                raise Exception
+            return jsonify({
+                "status": "true", 
+                "data": {
+                    "name": user["name"],
+                    "userID": user["userID"],
+                    "role": user["role"]
+                }
+            })
+        except Exception as e:
+            return jsonify({"status": "false"})
+    elif (request.method == "GET"):
+        return render_template('dochome.html')
+    
+
+@app.route("/requestDoc", methods=['POST'])
+def requestDoc():
+    recogSessionData = request.json
+    benhan = {
+        "recogSessionData": recogSessionData,
+        "prescriptionID":  None,
+        "isResolve": False
+    }
+    firestore.collection('benhan').document().set(benhan)
+    return {'status': 'true'}
+
+@app.route("/getBenhAn")
+def getbenhan():
+    benhan = []
+    for doc in firestore.collection('benhan').stream():
+        benhan.append({doc.id: doc.to_dict()})
+    return jsonify(benhan)
 
 # Path to the folders containing images
 HISTORY_FOLDER = os.path.join(app.root_path, 'history')
 TEST_FOLDER = os.path.join(app.root_path, 'test')
 SEGMENTS_FOLDER = os.path.join(app.root_path, 'segments')
 
-@app.route("/requestDoc", methods=['POST'])
-def requestDoc():
-    print(request.json)
-    return {'status': 'true'}
 
 @app.route('/save-image', methods=['POST'])
 def save_image():

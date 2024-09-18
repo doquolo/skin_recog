@@ -27,7 +27,11 @@
                     document.cookie = "";
                     location.replace('/login');
                 } else {
-                    location.replace('/home');
+                    if (res.home == 'user') {
+                        location.replace('/home');
+                    } else if (res.home == 'doc') {
+                        location.replace('/DocHome');
+                    }
                 }
             })
         }

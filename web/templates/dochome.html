@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DocHome</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/home.css')}}"
+    />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dochome.css')}}">
+    <script src="{{url_for('static', filename='js/cookie.js')}}"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="navbar">
+        <div class="logo">
+          <img src="{{url_for('static', filename='assets/logo.png')}}" alt="" />
+        </div>
+        <div class="selection selected" onclick="handleNavbar(this)">
+          Trang Chủ
+        </div>
+        <div class="user dropdown dropbtn" onclick="handleDropdown()">
+          <div id="actionDropdown" class="dropdown-content">
+            <a id="greeting" style="text-align: center; font-weight: 800"></a>
+            <a href="/logout" id="logout">Đăng xuất</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="pending">
+        <!-- <div class="item" onclick="handleBenhAn(0)">
+          <div class="image">
+            <img src="/images/2.jpg" alt="">
+          </div>
+          <div class="text">
+            <p>18/09/2024</p>
+            <p>20:50</p>
+          </div>
+        </div> -->
+      </div>
+      <!-- <div class="history"></div> -->
+    </div>
+    <script src="{{url_for('static', filename='js/navbar.js')}}"></script>
+    <script src="{{url_for('static', filename='js/dropdown.js')}}"></script>
+    <script src="{{url_for('static', filename='js/dochome.js')}}"></script>
+  </body>
+</html>

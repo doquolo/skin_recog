@@ -12,15 +12,6 @@
     <script src="{{ url_for('static', filename='js/home.js') }}"></script>
     <script src="{{url_for('static', filename='js/cookie.js')}}"></script>
 
-    <!-- Tải chat box -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <script
-      src="https://kit.fontawesome.com/a076d05399.js"
-      crossorigin="anonymous"
-    ></script>
   </head>
   <body>
     <div class="header">
@@ -34,7 +25,7 @@
         <div class="selection" onclick="handleNavbar(this)">Lịch sử</div>
         <div class="user dropdown dropbtn" onclick="handleDropdown()">
           <div id="actionDropdown" class="dropdown-content">
-            <a id="greeting" style="text-align: right;"></a>
+            <a id="greeting" style="text-align: center; font-weight: 800;"></a>
             <a href="/logout" id="logout">Đăng xuất</a>
           </div>
         </div>
@@ -166,26 +157,7 @@
       <div class="button" id="docReq">Yêu cầu bác sĩ</div>
     </div>
 
-    <script>
-      /* When the user clicks on the button, 
-      toggle between hiding and showing the dropdown content */
-      function handleDropdown() {
-        document.querySelector("#actionDropdown").classList.toggle("show")
-      }
-
-      // Close the dropdown if the user clicks outside of it
-      window.onclick = function (event) {
-        if (!event.target.matches(".dropbtn")) {
-          var dropdowns = document.getElementsByClassName("dropdown-content");
-          var i;
-          for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains("show")) {
-              openDropdown.classList.remove("show");
-            }
-          }
-        }
-      };
-    </script>
+    <script src="{{url_for('static', filename='js/navbar.js')}}"></script>
+    <script src="{{url_for('static', filename='js/dropdown.js')}}"></script>
   </body>
 </html>
