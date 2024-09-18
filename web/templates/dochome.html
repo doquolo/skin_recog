@@ -8,7 +8,14 @@
       rel="stylesheet"
       href="{{url_for('static', filename='css/home.css')}}"
     />
-    <link rel="stylesheet" href="{{url_for('static', filename='css/dochome.css')}}">
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/dochome.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/modelpopup.css')}}"
+    />
     <script src="{{url_for('static', filename='js/cookie.js')}}"></script>
   </head>
   <body>
@@ -42,8 +49,35 @@
       </div>
       <!-- <div class="history"></div> -->
     </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">x</span>
+        <p>Kê đơn thuốc</p>
+        <div class="result" style="display: flex">
+          <h2 style="align-self: flex-start; margin-left: 1rem">
+            Kết quả nhận diện
+          </h2>
+          <div class="container">s</div>
+        </div>
+        <div class="medicinelist">
+          <h2 style="align-self: flex-start; margin-left: 1rem">
+            Kê đơn thuốc
+          </h2>
+          <div class="action">
+            <button onclick="handlePostPrescription()">Hoàn tất</button>
+          </div>
+          <div style="margin-left: 5rem;">
+            <textarea name="text" cols="40" rows="5" id="pillist"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="{{url_for('static', filename='js/navbar.js')}}"></script>
     <script src="{{url_for('static', filename='js/dropdown.js')}}"></script>
     <script src="{{url_for('static', filename='js/dochome.js')}}"></script>
+    <script src="{{url_for('static', filename='js/modelpopup.js')}}"></script>
   </body>
 </html>

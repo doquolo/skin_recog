@@ -5,11 +5,11 @@ from PIL import Image
 import numpy as np
 import io
 import os
-import requests
 import uuid
 import datetime
 import firebase_admin
 from firebase_admin import firestore
+import random
 
 # connect to db
 creds = firebase_admin.credentials.Certificate("firebase_creds.json")
@@ -161,6 +161,29 @@ def getbenhan():
     for doc in firestore.collection('benhan').stream():
         benhan.append({doc.id: doc.to_dict()})
     return jsonify(benhan)
+
+@app.route("/createPrescription", methods=["POST"])
+def createPrescription():
+    id = f'{random.randrange(1, 10**6):06}'
+    data = request.json
+    pillID = {}
+    for doc in firestore.collection("medicine").stream():
+        pillID[doc.to_dict()["name"]] = doc.id
+    print(pillID)
+    pillstr = str(data["pillList"]).splitlines()
+    pillList = []
+    for i in pillstr:
+        pillData = i.split(";")
+        pillList.append({
+            "id": pillID[pillData[0]],
+            "amount": pillData[1],
+            "usage": pillData[2]
+        })
+    firestore.collection('prescriptions').document(str(id)).set({ 
+        "list": pillList,
+        "userID": data["userID"]
+    })
+    return {"status": "true"}
 
 # Path to the folders containing images
 HISTORY_FOLDER = os.path.join(app.root_path, 'history')

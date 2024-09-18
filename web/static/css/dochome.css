@@ -37,9 +37,117 @@ body {
     text-align: center;
 }
 
+.image {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .image > img {
-    height: 120px;
-    width: 120px;
+    height: 90%;
+    width: 90%;
     border: 1px solid black;
     border-radius: 10px;
 }
+
+.result {
+    width: 90%;
+    /* height: 30%; */
+}
+
+.result > .container {
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.result > .container > .frame {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.result > .container > .frame-sm {
+    width: 120px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.result > .container > .frame > img {
+    width: 180px;
+    height: 180px;
+}
+.result > .container > .frame-sm > img {
+    height: 80px;
+    width: 80px;
+}
+
+.result {
+    border: none;
+    box-shadow: none;
+}
+
+.medicinelist {
+    padding-left: 5rem;
+}
+
+.medicinelist > .table_component {
+    padding-left: 5rem;
+}
+
+.table_component {
+    overflow: auto;
+    width: 90%;
+  }
+
+  .table_component table {
+    border: 1px solid #dededf;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+  }
+
+  .table_component caption {
+    caption-side: top;
+    text-align: left;
+  }
+
+  .table_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #000000;
+    padding: 5px;
+  }
+
+  .table_component td {
+    border: 1px solid #dededf;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
+  }
+
+  .action {
+    padding: .5rem 1rem;
+  }
+
+  .action > button {
+    width: 80px;
+    height: 30px;
+    background-color: #d80000;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+  .action > button:active {
+    background-color: #9e0202;
+  }
