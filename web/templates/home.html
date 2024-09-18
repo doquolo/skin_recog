@@ -9,9 +9,9 @@
       type="text/css"
       href="{{ url_for('static', filename='css/home.css') }}"
     />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/modelpopup.css')}}">
     <script src="{{ url_for('static', filename='js/home.js') }}"></script>
     <script src="{{url_for('static', filename='js/cookie.js')}}"></script>
-
   </head>
   <body>
     <div class="header">
@@ -26,6 +26,7 @@
         <div class="user dropdown dropbtn" onclick="handleDropdown()">
           <div id="actionDropdown" class="dropdown-content">
             <a id="greeting" style="text-align: center; font-weight: 800;"></a>
+            <a id="prescriptions">Đơn thuốc</a>
             <a href="/logout" id="logout">Đăng xuất</a>
           </div>
         </div>
@@ -35,7 +36,7 @@
     <div id="loading-overlay" style="display: none">
       <div class="loader"></div>
     </div>
-
+    
     <div id="section1">
       <!-- Warming -->
       <div class="wrapper">
@@ -56,75 +57,75 @@
           <h2>Vùng bệnh</h2>
           <div id="preview" style="margin-left: auto; margin-right: auto"></div>
           <input
-            id="upload-input"
-            type="file"
-            accept="image/*"
-            style="display: none"
+          id="upload-input"
+          type="file"
+          accept="image/*"
+          style="display: none"
           />
           <button
-            id="upload-button"
-            onclick="document.getElementById('upload-input').click();"
+          id="upload-button"
+          onclick="document.getElementById('upload-input').click();"
           >
-            Tải ảnh lên
-          </button>
-          <button id="use-button">Chẩn đoán</button>
-        </section>
-
-        <div id="myForm">
-          <h2 style="margin-bottom: 25px">Triệu chứng</h2>
-          <form action="http://127.0.0.1:5000">
-            <div>
-              <input type="checkbox" id="opt1" name="problem" value="acne" />
-              <label for="opt1" style="font-size: 20px"
-                >Nổi mụn đỏ nhỏ hoặc đóng vảy</label
-              >
-            </div>
-            <div>
-              <input type="checkbox" id="opt2" name="problem" value="acne" />
-              <label for="opt2" style="font-size: 20px"
-                >Nổi mụn nhọt (mụn mủ)</label
-              >
-            </div>
-            <div>
-              <input type="checkbox" id="opt3" name="problem" value="der" />
-              <label for="opt3" style="font-size: 20px"
-                >Vùng da ngứa ngáy, đau rát</label
+          Tải ảnh lên
+        </button>
+        <button id="use-button">Chẩn đoán</button>
+      </section>
+      
+      <div id="myForm">
+        <h2 style="margin-bottom: 25px">Triệu chứng</h2>
+        <form action="http://127.0.0.1:5000">
+          <div>
+            <input type="checkbox" id="opt1" name="problem" value="acne" />
+            <label for="opt1" style="font-size: 20px"
+            >Nổi mụn đỏ nhỏ hoặc đóng vảy</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="opt2" name="problem" value="acne" />
+            <label for="opt2" style="font-size: 20px"
+            >Nổi mụn nhọt (mụn mủ)</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="opt3" name="problem" value="der" />
+            <label for="opt3" style="font-size: 20px"
+            >Vùng da ngứa ngáy, đau rát</label
               >
             </div>
             <div>
               <input type="checkbox" id="opt4" name="problem" value="der" />
               <label for="opt4" style="font-size: 20px; margin-left: 2px"
-                >Nổi mảng đỏ ngứa, rỉ nước, đóng vảy</label
+              >Nổi mảng đỏ ngứa, rỉ nước, đóng vảy</label
               >
             </div>
             <div>
               <input type="checkbox" id="opt5" name="problem" value="der" />
               <label for="opt5" style="font-size: 20px"
-                >Vùng da bị đỏ, viêm hoặc sưng</label
+              >Vùng da bị đỏ, viêm hoặc sưng</label
               >
             </div>
             <div>
               <input type="checkbox" id="opt6" name="problem" value="der" />
               <label for="opt6" style="font-size: 20px; margin-left: 2px"
-                >Mảng da khô, sần sùi, có vảy, bong tróc</label
+              >Mảng da khô, sần sùi, có vảy, bong tróc</label
               >
             </div>
             <div>
               <input type="checkbox" id="opt7" name="problem" value="rw" />
               <label for="opt7" style="font-size: 20px; margin-left: 2px"
-                >Nổi mẩn đỏ hoặc mụn nước hình vòng</label
+              >Nổi mẩn đỏ hoặc mụn nước hình vòng</label
               >
             </div>
             <div>
               <input type="checkbox" id="opt8" name="problem" value="rw" />
               <label for="opt8" style="font-size: 20px; margin-left: 2px"
-                >Phần rìa quanh vùng bệnh khô, bong tróc</label
+              >Phần rìa quanh vùng bệnh khô, bong tróc</label
               >
             </div>
             <div>
               <input type="checkbox" id="opt9" name="problem" value="rw" />
               <label for="opt9" style="font-size: 20px; margin-left: 2px"
-                >Vùng da ngứa ngáy, gây khó chịu</label
+              >Vùng da ngứa ngáy, gây khó chịu</label
               >
             </div>
             <div>
@@ -136,20 +137,20 @@
             <div>
               <input type="checkbox" id="opt11" name="problem1" value="sc" />
               <label for="opt11" style="font-size: 20px"
-                >Có vết sưng hoặc khối u đỏ hoặc nâu</label
+              >Có vết sưng hoặc khối u đỏ hoặc nâu</label
               >
             </div>
             <div>
               <input type="checkbox" id="opt12" name="problem2" value="sc" />
               <label for="opt12" style="font-size: 20px"
-                >Diện mạo của nốt ruồi thay đổi kì lạ</label
+              >Diện mạo của nốt ruồi thay đổi kì lạ</label
               >
             </div>
           </form>
         </div>
       </section>
     </div>
-
+    
     <!-- Section 2 -->
     <div class="result">
       <h2 style="text-align: center">Kết quả</h2>
@@ -157,6 +158,17 @@
       <div class="button" id="docReq">Yêu cầu bác sĩ</div>
     </div>
 
+     <!-- The Modal -->
+     <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">x</span>
+        <p style="font-weight: 700;">Đơn thuốc</p>
+        <div class="list" id="prescription-list"></div>
+      </div>
+    </div>
+    
+    <script src="{{url_for('static', filename='js/modelpopup.js')}}"></script>
     <script src="{{url_for('static', filename='js/navbar.js')}}"></script>
     <script src="{{url_for('static', filename='js/dropdown.js')}}"></script>
   </body>

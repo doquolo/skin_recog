@@ -122,6 +122,16 @@ def home():
     elif (request.method == "GET"):
         return render_template('home.html')
     
+@app.route('/getPreList')
+def getPreList():
+    id = request.args.get("id")
+    idList = []
+    for doc in firestore.collection("prescriptions").stream():
+        data = doc.to_dict()
+        if (data["userID"] == str(id)):
+            idList.append(doc.id)
+    return {"status": "true", "list": idList}
+    
 @app.route("/DocHome", methods=["POST", "GET"])
 def dochome():
     if (request.method == "POST"):
